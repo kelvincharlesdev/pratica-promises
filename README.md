@@ -10,6 +10,16 @@ Todas as bibliotecas necessárias para esta prática já estão adicionadas ao p
 npm install
 ```
 
+## configuração do ambiente
+
+Após a instalação dos pacotes, você deve preparar suas [variáveis de ambiente](https://pt.stackoverflow.com/questions/339476/o-que-s%C3%A3o-vari%C3%A1veis-de-ambiente). O objetivo destas variáveis é permitir que você configure segredos da sua aplicação, sem precisar publica-las em seu repositório. Outra vantagem do uso destas variáveis é permitir que diferentes configurações sejam adotadas para um projeto, sem que você precise rescrever seu código.
+
+Em nosso caso, teremos a variável `GITLAB_TOKEN`. Nesta variável, você precisa registrar o token que você produziu para acessar a API do gitlab.
+
+Para configurar sua chave, você deverá [gerar](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) esta chave na plataforma do https://git.raroacademy.com.br. Depois disso, duplique o arquivo `.env.example`, da raiz do seu repositório. Renomeie a réplica para `.env`. No novo arquivo, cole o token que você gerou.
+
+O sistema já está adaptado para trabalhar com esta variável. Toda vez que você precisar acessar este token, para trabalhar com as requisições para a API do gitlab, basta você chamar a variável `process.env.GITLAB_TOKEN`. Deixei um exemplo de uso no arquivo `src/index.ts`.
+
 ## comandos
 
 Este projeto nasce com alguns comandos uteis para o desenvolvedor. Abaixo, uma breve descrição deles:

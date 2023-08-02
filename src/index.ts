@@ -1,8 +1,10 @@
-import axios from 'axios';
+import { Repositorio } from 'types/repositorio';
+import { config } from 'dotenv';
+config();
 
-const consultaCep = async (cep: string) => {
-  const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-  console.log(response.data);
+export const buscaRepositorios = async (): Promise<Repositorio[]> => {
+  console.log(process.env.GITLAB_TOKEN);
+  return null;
 };
 
-consultaCep('32235150').then(response => console.log(response));
+buscaRepositorios().then(console.log);
