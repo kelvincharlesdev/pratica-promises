@@ -1,0 +1,49 @@
+# fonte: https://medium.com/@mutebg/using-gitlab-to-build-test-and-deploy-modern-front-end-applications-bc940501a1f6
+image:
+  name: node:16-alpine
+
+stages:
+  - install
+  - build
+  - quality
+
+install:
+  stage: install
+  script:
+    - npm install
+  artifacts:
+    name: "artifacts"
+    untracked: true
+    expire_in: 30 mins
+    paths:
+      - .npm/
+      - node_modules/
+
+build:
+  stage: build
+  needs: ["install"]
+  script:
+    - CI=false npm run build
+  artifacts:
+    paths:
+      - build
+    expire_in: 30 mins
+  dependencies:
+    - install
+
+linting:
+  stage: quality
+  needs: ["install"]
+  script:
+    - npm run lint
+  dependencies:
+    - install
+
+test:unit:
+  stage: quality
+  needs: ["install"]
+  script:
+    - npm run test -- --coverage --collectCoverageFrom="./src/**" --watchAll=false
+  dependencies:
+    - install
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
