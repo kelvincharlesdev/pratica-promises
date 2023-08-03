@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch index.ts",
+      "name": "teste.ts",
       "type": "node",
       "request": "launch",
       "runtimeArgs": ["-r", "ts-node/register"],
