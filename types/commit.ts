@@ -4,3 +4,10 @@ export interface Commit {
   autor: string;
   data: string;
 }
+
+export interface CommitApi {
+  id: string;
+  message: string;
+  author_name: string;
+  authored_date: string;
+}
